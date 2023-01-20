@@ -1,6 +1,6 @@
-package net.fabricmc.example.mixin;
+package me.datsuns.mc100days.mixin;
 
-import net.fabricmc.example.ExampleMod;
+import me.datsuns.mc100days.MC100days;
 import net.minecraft.client.gui.screen.TitleScreen;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -11,6 +11,6 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class ExampleMixin {
 	@Inject(at = @At("HEAD"), method = "init()V")
 	private void init(CallbackInfo info) {
-		ExampleMod.LOGGER.info("This line is printed by an example mod mixin!");
+		MC100days.LOGGER.info("This line is printed by an example mod mixin!");
 	}
 }
