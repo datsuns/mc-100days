@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "id": "modid",
+  "id": "mc100days",
   "version": "${version}",
 
-  "name": "Example Mod",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "name": "Minecraft100Days",
+  "description": "Utility for Playing 100days Adventure !",
   "authors": [
     "Me!"
   ],
@@ -14,16 +14,16 @@
   },
 
   "license": "CC0-1.0",
-  "icon": "assets/modid/icon.png",
+  "icon": "assets/mc100days/icon.png",
 
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.fabricmc.example.ExampleMod"
+      "me.datsuns.mc100days.MC100days"
     ]
   },
   "mixins": [
-    "modid.mixins.json"
+    "mc100days.mixins.json"
   ],
 
   "depends": {
