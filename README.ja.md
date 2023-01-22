@@ -1,20 +1,18 @@
 # 100days mod
 
-[日本語はこちら](./README.ja.md)
+## 機能
 
-## Feature
-
-* show current day at the bottom of window. (above inventory)
-* show splash text when the night is over!
+* 現在何日目かを画面の下に表示します。
+* 日が変わった際に、何日目か？を表示します。
 
 ![feature image](./images/icon.png)
 
-## Install
+## インストール
 
-depends on
+以下のmodに依存しています
 
 * [Fabric API](https://www.curseforge.com/minecraft/mc-mods/fabric-api)
 
-## License
+## ライセンス
 
 This template is available under the CC0 license. Feel free to learn from it and incorporate it in your own projects.
