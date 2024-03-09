@@ -22,7 +22,7 @@ loom {
     splitEnvironmentSourceSets()
 
 	mods {
-		"modid" {
+		"mc100days" {
 			sourceSet sourceSets.main
 			sourceSet sourceSets.client
 		}

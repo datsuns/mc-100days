@@ -1,4 +1,4 @@
-package com.example.mixin.client;
+package me.datsuns.mc100days.mixin.client;
 
 import net.minecraft.client.MinecraftClient;
 import org.spongepowered.asm.mixin.Mixin;
