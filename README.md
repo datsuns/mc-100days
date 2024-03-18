@@ -2,6 +2,9 @@
 
 [日本語はこちら](./README.ja.md)
 
+[![Automatic Build](https://github.com/datsuns/mc-100days/actions/workflows/build.yml/badge.svg)](https://github.com/datsuns/mc-100days/actions/workflows/build.yml)
+[![Modrinth downloads](https://modrinth.com/mod/100days-plugin?logo=modrinth&label=Modrinth&color=00AF5C)](https://modrinth.com/mod/100days-plugin)
+
 ## Feature
 
 * show current day at the bottom of window. (above inventory)
