@@ -3,7 +3,7 @@
 [日本語はこちら](./README.ja.md)
 
 [![Automatic Build](https://github.com/datsuns/mc-100days/actions/workflows/build.yml/badge.svg)](https://github.com/datsuns/mc-100days/actions/workflows/build.yml)
-[![Modrinth downloads](https://modrinth.com/mod/100days-plugin?logo=modrinth&label=Modrinth&color=00AF5C)](https://modrinth.com/mod/100days-plugin)
+[![Modrinth downloads](https://img.shields.io/modrinth/dt/DsrqhD5F?logo=modrinth&label=Modrinth&color=2200FF)](https://modrinth.com/mod/100days-plugin)
 
 ## Feature
 
