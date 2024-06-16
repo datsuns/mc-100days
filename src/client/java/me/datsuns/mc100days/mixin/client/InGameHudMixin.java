@@ -4,6 +4,7 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.hud.InGameHud;
+import net.minecraft.client.render.RenderTickCounter;
 import net.minecraft.client.util.Window;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
@@ -22,7 +23,7 @@ public class InGameHudMixin {
     public final int InventoryHeight = 50;
 
     @Inject(at = @At("TAIL"), method = "render")
-    public void render(DrawContext context, float tickDelta, CallbackInfo info) throws Exception {
+    public void render(DrawContext context, RenderTickCounter tickCounter, CallbackInfo info) throws Exception {
         MinecraftClient c = MinecraftClient.getInstance();
         if (c.world == null) {
             return;
