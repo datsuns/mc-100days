@@ -3,7 +3,7 @@
 	"package": "me.datsuns.mc100days.mixin.client",
 	"compatibilityLevel": "JAVA_21",
 	"client": [
-		"ExampleClientMixin"
+		"InGameHudMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1
