@@ -1,5 +1,7 @@
 package me.datsuns.mc100days;
 
+import me.datsuns.mc100days.core.DaySnapshot;
+import me.datsuns.mc100days.core.DayTracker;
 import net.fabricmc.fabric.api.client.rendering.v1.hud.HudElement;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
@@ -12,8 +14,9 @@ import net.minecraft.server.integrated.IntegratedServer;
 import net.minecraft.util.Colors;
 
 public class DaysRenderer implements HudElement {
-    public Days days = new Days();
-    public final int InventoryHeight = 50;
+    private static final int INVENTORY_HEIGHT = 50;
+
+    private final DayTracker tracker = new DayTracker();
 
     @Override
     public void render(DrawContext drawContext, RenderTickCounter renderTickCounter) {
@@ -23,13 +26,14 @@ public class DaysRenderer implements HudElement {
         }
         long tod = c.world.getTimeOfDay();
 
-        if (this.days.tick(tod)) {
-            showDayScreen(c);
+        DaySnapshot update = this.tracker.tick(tod);
+        if (update.changed()) {
+            showDayScreen(c, update);
         }
-        drawCurrentDay(drawContext, c.textRenderer, c.getWindow(), this.days.toString());
+        drawCurrentDay(drawContext, c.textRenderer, c.getWindow(), update.label());
     }
 
-    public void showDayScreen(MinecraftClient client) {
+    public void showDayScreen(MinecraftClient client, DaySnapshot snapshot) {
         Mc100daysClient.LOGGER.info("changed");
         IntegratedServer s = client.getServer();
         if (s == null) {
@@ -37,13 +41,13 @@ public class DaysRenderer implements HudElement {
         }
         ServerCommandSource src = s.getCommandSource();
         CommandManager cm = s.getCommandManager();
-        String cmd = String.format("title @a title {\"text\":\"%s\"}", this.days.toString());
+        String cmd = String.format("title @a title {\"text\":\"%s\"}", snapshot.label());
         cm.executeWithPrefix(src, cmd);
     }
 
     public void drawCurrentDay(DrawContext dc, TextRenderer textRenderer, Window window, String dayText) {
         float posX = (window.getScaledWidth() / 2) - (textRenderer.getWidth(dayText) / 2);
-        float posY = window.getScaledHeight() - InventoryHeight;
+        float posY = window.getScaledHeight() - INVENTORY_HEIGHT;
         dc.drawText(textRenderer, dayText, (int) posX, (int) posY, Colors.WHITE, false);
     }
 }
