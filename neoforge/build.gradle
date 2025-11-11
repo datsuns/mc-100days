@@ -9,6 +9,10 @@ base {
     archivesName = project.archives_base_name
 }
 
+def neoforgeJarName = { suffix ->
+    "${project.archives_base_name}-${project.version}-neoforge${suffix}"
+}
+
 java.toolchain.languageVersion = JavaLanguageVersion.of(21)
 
 neoForge {
@@ -107,4 +111,12 @@ idea {
         downloadSources = true
         downloadJavadoc = true
     }
+}
+
+tasks.named("jar") {
+    archiveFileName = neoforgeJarName(".jar")
+}
+
+tasks.named("sourcesJar") {
+    archiveFileName = neoforgeJarName("-sources.jar")
 }

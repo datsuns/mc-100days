@@ -10,6 +10,26 @@ base {
     archivesName = project.archives_base_name
 }
 
+def fabricJarName = { suffix ->
+    "${project.archives_base_name}-${project.version}-fabric${suffix}"
+}
+
+tasks.named("remapJar") {
+    archiveFileName = fabricJarName(".jar")
+}
+
+tasks.named("remapSourcesJar") {
+    archiveFileName = fabricJarName("-sources.jar")
+}
+
+tasks.named("jar") {
+    archiveFileName = fabricJarName("-dev.jar")
+}
+
+tasks.named("sourcesJar") {
+    archiveFileName = fabricJarName("-sources-dev.jar")
+}
+
 loom {
 	splitEnvironmentSourceSets()
 
