@@ -15,6 +15,15 @@ def neoforgeJarName = { suffix ->
 }
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+tasks.named("jar") {
+    archiveFileName = neoforgeJarName(".jar")
+
+    from(project(":common").sourceSets.main.output)
+
+    from(rootProject.file("LICENSE")) {
+        rename { "${it}_${project.archives_base_name}" }
+    }
+}
 
 neoForge {
     version = project.neo_version
