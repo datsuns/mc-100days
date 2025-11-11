@@ -47,6 +47,6 @@ public final class DaysOverlay {
     private static void drawCurrentDay(GuiGraphics graphics, Font font, int width, int height, String text) {
         int posX = (width - font.width(text)) / 2;
         int posY = height - INVENTORY_HEIGHT;
-        graphics.drawString(font, text, posX, posY, 0xFFFFFF, false);
+        graphics.drawString(font, text, posX, posY, 0xFFFFFFFF, false);
     }
 }
