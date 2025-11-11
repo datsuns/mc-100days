@@ -3,6 +3,7 @@ plugins {
     id 'maven-publish'
     id 'net.neoforged.moddev'
     id 'idea'
+    id "com.modrinth.minotaur"
 }
 
 base {
@@ -113,10 +114,18 @@ idea {
     }
 }
 
-tasks.named("jar") {
-    archiveFileName = neoforgeJarName(".jar")
-}
-
 tasks.named("sourcesJar") {
     archiveFileName = neoforgeJarName("-sources.jar")
+
+    from(project(":common").sourceSets.main.allSource)
+}
+
+modrinth {
+    token = System.getenv('MODRINTH_TOKEN')
+    projectId = "${project.modrinth_project_id}"
+    versionNumber = "v${project.mod_version}-mc${project.minecraft_version}-neoforge"
+    versionName = "${project.mod_version}-NeoForge"
+    uploadFile = jar
+    gameVersions = ['1.21.10']
+    loaders = ['neoforge']
 }
