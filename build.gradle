@@ -31,3 +31,9 @@ subprojects {
         it.options.release = 21
     }
 }
+
+tasks.register("modrinth") {
+    group = "publishing"
+    description = "Publishes Fabric and NeoForge builds to Modrinth."
+    dependsOn(":fabric:modrinth", ":neoforge:modrinth")
+}
