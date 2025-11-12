@@ -12,11 +12,15 @@
 
 ![feature image](./images/icon.png)
 
-## Install
+## Install for Fabric
 
 depends on
 
 * [Fabric API](https://www.curseforge.com/minecraft/mc-mods/fabric-api)
+
+## Install for NeoForge
+
+no other mod needed
 
 ## License
 

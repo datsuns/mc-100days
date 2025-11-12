@@ -7,11 +7,15 @@
 
 ![feature image](./images/icon.png)
 
-## インストール
+## インストール (Fabric)
 
 以下のmodに依存しています
 
 * [Fabric API](https://www.curseforge.com/minecraft/mc-mods/fabric-api)
+
+## インストール (NeoForge)
+
+特に依存しているmodはありません
 
 ## ライセンス
 
