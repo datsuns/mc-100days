@@ -101,7 +101,7 @@ modrinth {
     projectId = "${project.modrinth_project_id}" // The ID of your Modrinth project. Slugs will not work.
     versionNumber = "v${project.mod_version}-mc${project.minecraft_version}-fabric"
     // The (preferably SemVer) version of the mod. If not specified, it'll use the `version` declaration
-    versionName = "${project.mod_version}-Fabric"  // The version title. If not specified, it'll use the version number
+    versionName = "${project.mod_version}-Fabric for Minecraft v${project.minecraft_version}"  // The version title. If not specified, it'll use the version number
     uploadFile = remapJar // Tells Minotaur to use the remapped jar
     gameVersions = [project.minecraft_version] // An array of game versions the version supports
     loaders = ['fabric'] // Self-explanatory.

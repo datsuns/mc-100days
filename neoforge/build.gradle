@@ -133,7 +133,7 @@ modrinth {
     token = System.getenv('MODRINTH_TOKEN')
     projectId = "${project.modrinth_project_id}"
     versionNumber = "v${project.mod_version}-mc${project.minecraft_version}-neoforge"
-    versionName = "${project.mod_version}-NeoForge"
+    versionName = "${project.mod_version}-NeoForge for Minecraft v${project.minecraft_version}"
     uploadFile = jar
     gameVersions = [project.minecraft_version]
     loaders = ['neoforge']
