@@ -1,7 +1,7 @@
 import com.modrinth.minotaur.dependencies.ModDependency
 
 plugins {
-	id 'fabric-loom'
+	id 'net.fabricmc.fabric-loom-remap'
 	id 'maven-publish'
   id "com.modrinth.minotaur"
 }
@@ -103,7 +103,7 @@ modrinth {
     // The (preferably SemVer) version of the mod. If not specified, it'll use the `version` declaration
     versionName = "${project.mod_version}-Fabric"  // The version title. If not specified, it'll use the version number
     uploadFile = remapJar // Tells Minotaur to use the remapped jar
-    gameVersions = ['1.21.10'] // An array of game versions the version supports
+    gameVersions = [project.minecraft_version] // An array of game versions the version supports
     loaders = ['fabric'] // Self-explanatory.
     dependencies = [
             new ModDependency('P7dR8mSH', 'required') // Creates a new required dependency on Fabric API

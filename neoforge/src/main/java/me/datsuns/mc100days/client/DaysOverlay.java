@@ -1,18 +1,16 @@
-package me.datsuns.mc100days.neoforge.client;
+package me.datsuns.mc100days.client;
 
 import me.datsuns.mc100days.core.DaySnapshot;
 import me.datsuns.mc100days.core.DayTracker;
-import me.datsuns.mc100days.neoforge.Mc100daysNeoForge;
+import me.datsuns.mc100days.Mc100days;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.commands.CommandSourceStack;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.client.server.IntegratedServer;
 
 public final class DaysOverlay {
-    public static final ResourceLocation LAYER_ID = ResourceLocation.fromNamespaceAndPath(Mc100daysNeoForge.MOD_ID, "days");
     private static final int INVENTORY_HEIGHT = 50;
 
     private static final DayTracker TRACKER = new DayTracker();
@@ -34,7 +32,7 @@ public final class DaysOverlay {
     }
 
     private static void showDayTitle(Minecraft minecraft, DaySnapshot snapshot) {
-        Mc100daysNeoForge.LOGGER.info("Day advanced to {}", snapshot.dayNumber());
+        Mc100days.LOGGER.info("Day advanced to {}", snapshot.dayNumber());
         IntegratedServer server = minecraft.getSingleplayerServer();
         if (server == null) {
             return;

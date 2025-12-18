@@ -42,7 +42,7 @@ public class DaysRenderer implements HudElement {
         ServerCommandSource src = s.getCommandSource();
         CommandManager cm = s.getCommandManager();
         String cmd = String.format("title @a title {\"text\":\"%s\"}", snapshot.label());
-        cm.executeWithPrefix(src, cmd);
+        cm.parseAndExecute(src, cmd);
     }
 
     public void drawCurrentDay(DrawContext dc, TextRenderer textRenderer, Window window, String dayText) {
