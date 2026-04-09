@@ -1,3 +1,9 @@
+plugins {
+    id 'java-library'
+}
+
 base {
     archivesName = "${project.archives_base_name}-common"
 }
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(25)

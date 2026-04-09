@@ -2,7 +2,7 @@ package me.datsuns.mc100days;
 
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.rendering.v1.hud.HudElementRegistry;
-import net.minecraft.util.Identifier;
+import net.minecraft.resources.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,6 +13,6 @@ public class Mc100daysClient implements ClientModInitializer {
     public void onInitializeClient() {
         // This entrypoint is suitable for setting up client-specific logic, such as rendering.
         LOGGER.info("Hello Fabric client!");
-        HudElementRegistry.addLast(Identifier.of("mc100days", "render"), new DaysRenderer());
+        HudElementRegistry.addLast(Identifier.fromNamespaceAndPath("mc100days", "render"), new DaysRenderer());
     }
 }

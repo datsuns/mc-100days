@@ -6,9 +6,10 @@ import me.datsuns.mc100days.Mc100days;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.client.server.IntegratedServer;
+import net.minecraft.resources.Identifier;
 
 public final class DaysOverlay {
     private static final int INVENTORY_HEIGHT = 50;
@@ -18,13 +19,13 @@ public final class DaysOverlay {
     private DaysOverlay() {
     }
 
-    public static void render(GuiGraphics guiGraphics, DeltaTracker deltaTracker) {
+    public static void render(GuiGraphicsExtractor guiGraphics, DeltaTracker deltaTracker) {
         Minecraft minecraft = Minecraft.getInstance();
         if (minecraft.level == null) {
             return;
         }
 
-        DaySnapshot snapshot = TRACKER.tick(minecraft.level.getDayTime());
+        DaySnapshot snapshot = TRACKER.tick(minecraft.level.getOverworldClockTime());
         if (snapshot.changed()) {
             showDayTitle(minecraft, snapshot);
         }
@@ -42,9 +43,9 @@ public final class DaysOverlay {
         server.getCommands().performPrefixedCommand(source, cmd);
     }
 
-    private static void drawCurrentDay(GuiGraphics graphics, Font font, int width, int height, String text) {
+    private static void drawCurrentDay(GuiGraphicsExtractor graphics, Font font, int width, int height, String text) {
         int posX = (width - font.width(text)) / 2;
         int posY = height - INVENTORY_HEIGHT;
-        graphics.drawString(font, text, posX, posY, 0xFFFFFFFF, false);
+        graphics.text(font, text, posX, posY, 0xFFFFFFFF, false);
     }
 }

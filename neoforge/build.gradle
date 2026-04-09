@@ -6,6 +6,7 @@ plugins {
     id "com.modrinth.minotaur"
 }
 
+
 base {
     archivesName = project.archives_base_name
 }
@@ -14,7 +15,10 @@ def neoforgeJarName = { suffix ->
     "${project.archives_base_name}-${project.version}-neoforge${suffix}"
 }
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+java {
+    withSourcesJar()
+    toolchain.languageVersion = JavaLanguageVersion.of(25)
+}
 tasks.named("jar") {
     archiveFileName = neoforgeJarName(".jar")
 
@@ -28,10 +32,7 @@ tasks.named("jar") {
 neoForge {
     version = project.neo_version
 
-    parchment {
-        mappingsVersion = project.parchment_mappings_version
-        minecraftVersion = project.parchment_minecraft_version
-    }
+
 
     runs {
         client {

@@ -3,51 +3,51 @@ package me.datsuns.mc100days;
 import me.datsuns.mc100days.core.DaySnapshot;
 import me.datsuns.mc100days.core.DayTracker;
 import net.fabricmc.fabric.api.client.rendering.v1.hud.HudElement;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.font.TextRenderer;
-import net.minecraft.client.gui.DrawContext;
-import net.minecraft.client.render.RenderTickCounter;
-import net.minecraft.client.util.Window;
-import net.minecraft.server.command.CommandManager;
-import net.minecraft.server.command.ServerCommandSource;
-import net.minecraft.server.integrated.IntegratedServer;
-import net.minecraft.util.Colors;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Font;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
+import net.minecraft.client.DeltaTracker;
+import com.mojang.blaze3d.platform.Window;
+import net.minecraft.commands.Commands;
+import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.client.server.IntegratedServer;
+import net.minecraft.resources.Identifier;
 
 public class DaysRenderer implements HudElement {
     private static final int INVENTORY_HEIGHT = 50;
 
     private final DayTracker tracker = new DayTracker();
 
-    @Override
-    public void render(DrawContext drawContext, RenderTickCounter renderTickCounter) {
-        MinecraftClient c = MinecraftClient.getInstance();
-        if (c.world == null) {
+@Override
+    public void extractRenderState(GuiGraphicsExtractor graphics, DeltaTracker deltaTracker) {
+        Minecraft c = Minecraft.getInstance();
+        if (c.level == null) {
             return;
         }
-        long tod = c.world.getTimeOfDay();
+        long tod = c.level.getOverworldClockTime();
 
         DaySnapshot update = this.tracker.tick(tod);
         if (update.changed()) {
             showDayScreen(c, update);
         }
-        drawCurrentDay(drawContext, c.textRenderer, c.getWindow(), update.label());
+        drawCurrentDay(graphics, c.font, c.getWindow(), update.label());
     }
 
-    public void showDayScreen(MinecraftClient client, DaySnapshot snapshot) {
+    public void showDayScreen(Minecraft client, DaySnapshot snapshot) {
         Mc100daysClient.LOGGER.info("changed");
-        IntegratedServer s = client.getServer();
+        IntegratedServer s = client.getSingleplayerServer();
         if (s == null) {
             return;
         }
-        ServerCommandSource src = s.getCommandSource();
-        CommandManager cm = s.getCommandManager();
+        CommandSourceStack src = s.createCommandSourceStack();
+        Commands cm = s.getCommands();
         String cmd = String.format("title @a title {\"text\":\"%s\"}", snapshot.label());
-        cm.parseAndExecute(src, cmd);
+        cm.performPrefixedCommand(src, cmd);
     }
 
-    public void drawCurrentDay(DrawContext dc, TextRenderer textRenderer, Window window, String dayText) {
-        float posX = (window.getScaledWidth() / 2) - (textRenderer.getWidth(dayText) / 2);
-        float posY = window.getScaledHeight() - INVENTORY_HEIGHT;
-        dc.drawText(textRenderer, dayText, (int) posX, (int) posY, Colors.WHITE, false);
+    public void drawCurrentDay(GuiGraphicsExtractor dc, Font textRenderer, Window window, String dayText) {
+        float posX = (window.getGuiScaledWidth() / 2.0f) - (textRenderer.width(dayText) / 2.0f);
+        float posY = window.getGuiScaledHeight() - INVENTORY_HEIGHT;
+        dc.text(textRenderer, dayText, (int) posX, (int) posY, 0xFFFFFFFF, false);
     }
 }
