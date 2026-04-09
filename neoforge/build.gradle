@@ -12,7 +12,7 @@ base {
 }
 
 def neoforgeJarName = { suffix ->
-    "${project.archives_base_name}-${project.version}-neoforge${suffix}"
+    "${project.archives_base_name}-${project.version}-neoforge-mc${project.minecraft_version}${suffix}"
 }
 
 java {

@@ -11,7 +11,7 @@ base {
 }
 
 def fabricJarName = { suffix ->
-    "${project.archives_base_name}-${project.version}-fabric${suffix}"
+    "${project.archives_base_name}-${project.version}-fabric-mc${project.minecraft_version}${suffix}"
 }
 
 // tasks.named("remapSourcesJar") {
@@ -26,7 +26,7 @@ java {
 }
 
 tasks.named("jar") {
-    archiveFileName = fabricJarName("-dev.jar")
+    archiveFileName = fabricJarName(".jar")
 }
 
 tasks.named("sourcesJar") {
